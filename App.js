@@ -14,7 +14,13 @@ export default function App() {
     setTask('');
 
   }
-  const 
+  
+  const handleDeleteTask = (index) => {
+    let copy = [...taskItems];
+    copy.splice(index, 1);
+    setTaskItems(copy);
+    alert('Task deleted succefully.')
+  }
 
   return (
     <View style={styles.container}>
@@ -25,7 +31,9 @@ export default function App() {
         </Text>
         <View style={styles.items}>
           {taskItems.map((item, index) => {
-            return <Task key={index} task={item}/>
+            return <TouchableOpacity key={index} onLongPress={()=>handleDeleteTask(index)}>
+              <Task  task={item}/>
+            </TouchableOpacity>
           })}
         </View>
       </View>
